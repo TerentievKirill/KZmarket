@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 380" fill="none" role="img" aria-label="Ноутбук и смартфон">
+  <defs>
+    <linearGradient id="screen" x1="55" y1="0" x2="530" y2="330" gradientUnits="userSpaceOnUse"><stop stop-color="#b3d7ff"/><stop offset=".52" stop-color="#517fbd"/><stop offset="1" stop-color="#0e365e"/></linearGradient>
+    <linearGradient id="base" x1="0" y1="0" x2="500" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#e8edf4"/><stop offset=".5" stop-color="#9ba9bd"/><stop offset="1" stop-color="#e6ecf3"/></linearGradient>
+    <linearGradient id="phone" x1="0" y1="0" x2="130" y2="200" gradientUnits="userSpaceOnUse"><stop stop-color="#ceeaff"/><stop offset=".5" stop-color="#7daaf0"/><stop offset="1" stop-color="#6140c8"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-50%" width="140%" height="220%"><feGaussianBlur stdDeviation="15"/></filter>
+  </defs>
+  <ellipse cx="337" cy="342" rx="267" ry="19" fill="#063675" opacity=".4" filter="url(#shadow)"/>
+  <g transform="translate(34 21) rotate(-2 265 180)">
+    <rect x="92" y="15" width="454" height="272" rx="14" fill="#202d3c"/>
+    <rect x="103" y="26" width="432" height="249" rx="6" fill="url(#screen)"/>
+    <circle cx="319" cy="20" r="2" fill="#667c98"/>
+    <path d="M103 247 233 129l64 56 67-97 170 159v28H103v-28Z" fill="#b8d1ee" opacity=".75"/>
+    <path d="m103 254 85-69 81 41 71-67 94 57 56-48 45 61v45H103v-20Z" fill="#5e88ae"/>
+    <path d="m103 274 107-63 97 50 82-62 146 75v1H103Z" fill="#294e78"/>
+    <path d="M68 291h505l47 31c3 3 1 9-7 9H18c-7 0-10-7-5-10l55-30Z" fill="url(#base)"/>
+    <path d="M68 291h505l29 21H40l28-21Z" fill="#c6d1e0"/>
+    <rect x="254" y="309" width="120" height="8" rx="4" fill="#8c99a9"/>
+    <path d="M18 326h595" stroke="#f8fdff" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(492 100) rotate(8 80 120)">
+    <rect x="6" y="4" width="137" height="250" rx="25" fill="#1a2634" stroke="#e3eaf2" stroke-width="4"/>
+    <rect x="14" y="13" width="121" height="232" rx="19" fill="url(#phone)"/>
+    <path d="M14 166c37-54 70-79 121-95v174H14v-79Z" fill="#7b6cdb" opacity=".45"/>
+    <path d="M14 221c47-70 77-100 121-123v147H14v-24Z" fill="#5441b2" opacity=".5"/>
+    <rect x="55" y="17" width="38" height="11" rx="6" fill="#1a2634"/>
+  </g>
+</svg>

@@ -1,0 +1,76 @@
+name: kzmarket
+
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME:?Set DB_NAME in .env}
+      MARIADB_USER: ${DB_USER:?Set DB_USER in .env}
+      MARIADB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Set DB_ROOT_PASSWORD in .env}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    networks:
+      - internal
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${HTTP_BIND:-127.0.0.1}:${HTTP_PORT:-8080}:80"
+    environment: &wordpress-env
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME:?Set DB_NAME in .env}
+      WORDPRESS_DB_USER: ${DB_USER:?Set DB_USER in .env}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_MEMORY_LIMIT', '256M');
+        define('WP_MAX_MEMORY_LIMIT', '512M');
+        if (isset($$_SERVER['HTTP_X_FORWARDED_PROTO']) && $$_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            $$_SERVER['HTTPS'] = 'on';
+        }
+    volumes: &wordpress-volumes
+      - wordpress_data:/var/www/html
+      - ./theme/kzmarket:/var/www/html/wp-content/themes/kzmarket:ro
+    networks:
+      - internal
+
+  wpcli:
+    image: wordpress:cli-php8.3
+    profiles: ["tools"]
+    # Alpine WP-CLI defaults to UID 82; the Debian Apache image writes as UID 33.
+    user: "33:33"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      <<: *wordpress-env
+      SITE_URL: ${SITE_URL:?Set SITE_URL in .env}
+      SITE_TITLE: ${SITE_TITLE:-KZmarket}
+      WP_ADMIN_USER: ${WP_ADMIN_USER:?Set WP_ADMIN_USER in .env}
+      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD:?Set WP_ADMIN_PASSWORD in .env}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL:?Set WP_ADMIN_EMAIL in .env}
+      HOME: /tmp
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./theme/kzmarket:/var/www/html/wp-content/themes/kzmarket:ro
+      - ./scripts:/opt/kzmarket/scripts:ro
+    working_dir: /var/www/html
+    networks:
+      - internal
+
+volumes:
+  db_data:
+  wordpress_data:
+
+networks:
+  internal:

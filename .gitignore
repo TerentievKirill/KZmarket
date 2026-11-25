@@ -1,0 +1,10 @@
+.env
+!.env.example
+.DS_Store
+.idea/
+.vscode/
+backups/
+*.sql
+*.tar.gz
+*.log
+node_modules/

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="460" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#9fd4f6"/><stop offset=".7" stop-color="#4a90cb"/><stop offset="1" stop-color="#195482"/></linearGradient></defs>
+  <rect width="480" height="480" rx="26" fill="#f6f8fb"/>
+  <ellipse cx="240" cy="399" rx="151" ry="10" fill="#d5dfeb"/>
+  <rect x="41" y="96" width="398" height="263" rx="12" fill="#232f3e"/>
+  <rect x="52" y="107" width="376" height="239" rx="3" fill="url(#sky)"/>
+  <path d="m52 258 93-74 47 48 68-94 96 74 72-38v172H52v-88Z" fill="#b7d3e1"/>
+  <path d="m52 309 112-95 89 63 83-62 92 70v61H52v-37Z" fill="#4d82a1"/>
+  <path d="m52 337 109-76 81 58 100-65 86 51v41H52v-9Z" fill="#1d5277"/>
+  <rect x="223" y="359" width="34" height="37" fill="#9caab9"/>
+  <path d="M181 400h118l24 11H157l24-11Z" fill="#64768c"/>
+</svg>
